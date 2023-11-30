@@ -20,6 +20,6 @@ Assets, or resources used
 ## Future Development
 
 # Created by: Group Name
-Luke Vogel
-Preston Brown
+Luke Vogel,
+Preston Brown,
 Alec Umlauf
