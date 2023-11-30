@@ -19,7 +19,7 @@ Assets, or resources used
 
 ## Future Development
 
-# Created by: Group Name
+# Created by: PAL
 Luke Vogel,
 Preston Brown,
 Alec Umlauf
