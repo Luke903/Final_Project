@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cejw2ah6mlyq8"]
+[gd_scene load_steps=2 format=3 uid="uid://cejw2ah6mlyq8"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_nwndd"]
 
 [node name="MainMenu" type="Node2D"]
 
@@ -11,6 +13,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nwndd")
 
 [node name="ColorRect" type="ColorRect" parent="Menu"]
 layout_mode = 1
@@ -65,7 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "How To Play"
 
-[node name="Play2" type="Button" parent="Menu"]
+[node name="Quit" type="Button" parent="Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,3 +82,7 @@ offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
+
+[connection signal="pressed" from="Menu/Play" to="Menu" method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/HowToPlay" to="Menu" method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_quit_pressed"]
