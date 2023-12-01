@@ -18,6 +18,9 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("Click") and mouseIn == true:
 		global.updateCompanyCash(global.companyClickAmount)
+		var tween = create_tween()
+		tween.tween_property($Sprite2D, "scale", Vector2(.08, .08), .1)
+		tween.tween_property($Sprite2D, "scale", Vector2(.07, .07), .1)
 
 func _on_area_2d_mouse_entered():
 	mouseIn = true
