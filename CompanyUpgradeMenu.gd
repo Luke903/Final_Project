@@ -16,6 +16,7 @@ func _input(event):
 	if mouseIn and event.is_action_pressed("Click"):
 		$Exit/AnimatedSprite2D.animation = "Pressed"
 		$Exit/AnimatedSprite2D.play()
+		
 
 func _on_area_2d_mouse_entered():
 	mouseIn = true
