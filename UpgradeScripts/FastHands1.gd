@@ -17,6 +17,7 @@ func _input(event):
 		if global.playerCash >= 10:
 			global.updatePlayerClickAmount(1)
 			global.updatePlayerCash(-10)
+			$ChaChing.play()
 			visible = false
 			set_process(false)
 

@@ -17,6 +17,7 @@ func _input(event):
 		if global.playerCash >= 150:
 			global.updateSabotageAmount(100)
 			global.updatePlayerCash(-150)
+			$ChaChing.play()
 			visible = false
 			set_process(false)
 

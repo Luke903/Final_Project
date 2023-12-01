@@ -16,6 +16,8 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("Click") and mouseIn == true:
+		$AnimatedSprite2D.animation = "Pressed"
+		$AnimatedSprite2D.play()
 		var chance = randf()
 		if chance <= global.sabotageChance:
 			get_tree().change_scene_to_file("res://lose.tscn")
