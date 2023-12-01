@@ -1,4 +1,28 @@
-[gd_scene format=3 uid="uid://cd5kvxqhnrqo3"]
+[gd_scene load_steps=16 format=3 uid="uid://cd5kvxqhnrqo3"]
+
+[ext_resource type="Script" path="res://UI.gd" id="1_k57eo"]
+[ext_resource type="Script" path="res://PlayerUpgrades.gd" id="2_m8xjv"]
+[ext_resource type="Script" path="res://PlayerClick.gd" id="2_w2p5o"]
+[ext_resource type="Script" path="res://CompanyClick.gd" id="3_egxw5"]
+[ext_resource type="Script" path="res://PlayerUpgradeMenu.gd" id="3_xoj55"]
+[ext_resource type="Script" path="res://UpgradeScripts/FastHands1.gd" id="4_vvfu3"]
+[ext_resource type="Script" path="res://UpgradeScripts/FastHands2.gd" id="5_ff1ab"]
+[ext_resource type="Script" path="res://UpgradeScripts/FastHands3.gd" id="6_iwdhk"]
+[ext_resource type="Script" path="res://UpgradeScripts/Dedication.gd" id="7_ycgmi"]
+[ext_resource type="Script" path="res://UpgradeScripts/Dedication2.gd" id="8_dus0u"]
+[ext_resource type="Script" path="res://UpgradeScripts/Dedication3.gd" id="9_cul8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4xf8"]
+size = Vector2(42, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk4w7"]
+size = Vector2(45, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svjyp"]
+size = Vector2(40, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qawjk"]
+size = Vector2(37, 39)
 
 [node name="Game" type="Node2D"]
 
@@ -7,6 +31,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+script = ExtResource("1_k57eo")
 
 [node name="Divider" type="ColorRect" parent="UI"]
 layout_mode = 1
@@ -36,7 +61,7 @@ offset_bottom = -234.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timer" type="ColorRect" parent="UI"]
+[node name="Time" type="ColorRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="UI/Timer"]
+[node name="Label" type="Label" parent="UI/Time"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -65,3 +90,306 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Time: 0000"
+
+[node name="Timer" type="Timer" parent="UI"]
+autostart = true
+
+[node name="Player" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="UI/Player"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Player Cash: $0"
+
+[node name="PlayerUpgrades" type="Sprite2D" parent="UI/Player"]
+position = Vector2(0, 250)
+script = ExtResource("2_m8xjv")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Player/PlayerUpgrades"]
+offset_right = 40.0
+offset_bottom = 60.0
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Area2D"]
+position = Vector2(20, 29.5)
+shape = SubResource("RectangleShape2D_g4xf8")
+
+[node name="Menu" type="Node2D" parent="UI/Player/PlayerUpgrades"]
+process_mode = 1
+script = ExtResource("3_xoj55")
+
+[node name="Background" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_top = -100.0
+offset_right = 500.0
+offset_bottom = 350.0
+
+[node name="Exit" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 451.0
+offset_top = -97.0
+offset_right = 497.0
+offset_bottom = -52.0
+color = Color(0, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Exit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Exit/Area2D"]
+position = Vector2(22.5, 22.5)
+shape = SubResource("RectangleShape2D_yk4w7")
+
+[node name="FastHands" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = -80.0
+offset_right = 45.0
+offset_bottom = -40.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("4_vvfu3")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/FastHands"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 193.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fast Hands 1: $10K (Steal 1K more per click)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="FastHands2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = -30.0
+offset_right = 45.0
+offset_bottom = 10.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_ff1ab")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/FastHands2"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 193.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fast Hands 2: $50K (Steal 2K more per click)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands2/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="FastHands3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 20.0
+offset_right = 45.0
+offset_bottom = 60.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_iwdhk")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/FastHands3"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 193.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fast Hands 3: $250K (Steal 4K more per click)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands3/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Company" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="UI/Company"]
+layout_mode = 0
+offset_left = 720.0
+offset_right = 862.0
+offset_bottom = 26.0
+text = "Company Cash: $0"
+
+[node name="CompanyUpgrades" type="Sprite2D" parent="UI/Company"]
+position = Vector2(1112, 250)
+script = ExtResource("2_m8xjv")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Company/CompanyUpgrades"]
+offset_right = 40.0
+offset_bottom = 60.0
+
+[node name="Area2D" type="Area2D" parent="UI/Company/CompanyUpgrades"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Company/CompanyUpgrades/Area2D"]
+position = Vector2(20, 29.5)
+shape = SubResource("RectangleShape2D_g4xf8")
+
+[node name="Menu" type="Node2D" parent="UI/Company/CompanyUpgrades"]
+process_mode = 1
+position = Vector2(-460, 0)
+script = ExtResource("3_xoj55")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
+offset_top = -100.0
+offset_right = 500.0
+offset_bottom = 350.0
+
+[node name="Exit" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
+offset_left = 5.0
+offset_top = -97.0
+offset_right = 51.0
+offset_bottom = -52.0
+color = Color(0, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="UI/Company/CompanyUpgrades/Menu/Exit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Company/CompanyUpgrades/Menu/Exit/Area2D"]
+position = Vector2(22.5, 22.5)
+shape = SubResource("RectangleShape2D_yk4w7")
+
+[node name="Dedication" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
+offset_left = 450.0
+offset_top = -80.0
+offset_right = 490.0
+offset_bottom = -40.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_ycgmi")
+
+[node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Dedication"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -390.0
+offset_right = -55.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Dedication 1: $10K (Produce 1K more per click)"
+horizontal_alignment = 2
+
+[node name="Area2D" type="Area2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Dedication2" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
+offset_left = 450.0
+offset_top = -30.0
+offset_right = 490.0
+offset_bottom = 10.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_dus0u")
+
+[node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Dedication2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -414.0
+offset_right = -55.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Dedication 2: $50K (Produce 2K more per click)"
+horizontal_alignment = 2
+
+[node name="Area2D" type="Area2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication2/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Dedication3" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
+offset_left = 450.0
+offset_top = 20.0
+offset_right = 490.0
+offset_bottom = 60.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_cul8d")
+
+[node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Dedication3"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -414.0
+offset_right = -55.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Dedication 3: $250K (Produce 4K more per click)"
+horizontal_alignment = 2
+
+[node name="Area2D" type="Area2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication3/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="PlayerClick" type="Sprite2D" parent="."]
+script = ExtResource("2_w2p5o")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerClick"]
+offset_left = 458.0
+offset_top = 533.0
+offset_right = 498.0
+offset_bottom = 573.0
+
+[node name="Area2D" type="Area2D" parent="PlayerClick"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerClick/Area2D"]
+position = Vector2(477.5, 553.5)
+shape = SubResource("RectangleShape2D_qawjk")
+
+[node name="CompanyClick" type="Sprite2D" parent="."]
+position = Vector2(200, 0)
+script = ExtResource("3_egxw5")
+
+[node name="ColorRect" type="ColorRect" parent="CompanyClick"]
+offset_left = 458.0
+offset_top = 533.0
+offset_right = 498.0
+offset_bottom = 573.0
+
+[node name="Area2D" type="Area2D" parent="CompanyClick"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CompanyClick/Area2D"]
+position = Vector2(477.5, 553.5)
+shape = SubResource("RectangleShape2D_qawjk")
+
+[connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Area2D" to="UI/Player/PlayerUpgrades" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Area2D" to="UI/Player/PlayerUpgrades" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Exit/Area2D" to="UI/Player/PlayerUpgrades/Menu" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Exit/Area2D" to="UI/Player/PlayerUpgrades/Menu" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/FastHands/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/FastHands/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/FastHands2/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/FastHands2/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/FastHands3/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/FastHands3/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Area2D" to="UI/Company/CompanyUpgrades" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Area2D" to="UI/Company/CompanyUpgrades" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Menu/Exit/Area2D" to="UI/Company/CompanyUpgrades/Menu" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Menu/Exit/Area2D" to="UI/Company/CompanyUpgrades/Menu" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Menu/Dedication/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Menu/Dedication/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Menu/Dedication2/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Menu/Dedication2/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Menu/Dedication3/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Menu/Dedication3/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="PlayerClick/Area2D" to="PlayerClick" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="PlayerClick/Area2D" to="PlayerClick" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="CompanyClick/Area2D" to="CompanyClick" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CompanyClick/Area2D" to="CompanyClick" method="_on_area_2d_mouse_exited"]
