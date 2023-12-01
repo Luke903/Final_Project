@@ -1,16 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://cd5kvxqhnrqo3"]
+[gd_scene load_steps=20 format=3 uid="uid://cui26jcy0ekxr"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_k57eo"]
-[ext_resource type="Script" path="res://PlayerUpgrades.gd" id="2_m8xjv"]
+[ext_resource type="Script" path="res://UpgradeScripts/PlayerUpgrades.gd" id="2_op2w6"]
 [ext_resource type="Script" path="res://PlayerClick.gd" id="2_w2p5o"]
 [ext_resource type="Script" path="res://CompanyClick.gd" id="3_egxw5"]
-[ext_resource type="Script" path="res://PlayerUpgradeMenu.gd" id="3_xoj55"]
+[ext_resource type="Script" path="res://UpgradeScripts/PlayerUpgradeMenu.gd" id="3_o3kn6"]
 [ext_resource type="Script" path="res://UpgradeScripts/FastHands1.gd" id="4_vvfu3"]
 [ext_resource type="Script" path="res://UpgradeScripts/FastHands2.gd" id="5_ff1ab"]
 [ext_resource type="Script" path="res://UpgradeScripts/FastHands3.gd" id="6_iwdhk"]
+[ext_resource type="Script" path="res://UpgradeScripts/Secretary.gd" id="7_hxy7w"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication.gd" id="7_ycgmi"]
+[ext_resource type="Script" path="res://UpgradeScripts/Secretary2.gd" id="8_3fepa"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication2.gd" id="8_dus0u"]
+[ext_resource type="Script" path="res://UpgradeScripts/Secretary3.gd" id="9_boo17"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication3.gd" id="9_cul8d"]
+[ext_resource type="Script" path="res://UpgradeScripts/Sabotage.gd" id="14_kvtv2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4xf8"]
 size = Vector2(42, 63)
@@ -107,7 +111,7 @@ text = "Player Cash: $0"
 
 [node name="PlayerUpgrades" type="Sprite2D" parent="UI/Player"]
 position = Vector2(0, 250)
-script = ExtResource("2_m8xjv")
+script = ExtResource("2_op2w6")
 
 [node name="ColorRect" type="ColorRect" parent="UI/Player/PlayerUpgrades"]
 offset_right = 40.0
@@ -121,7 +125,8 @@ shape = SubResource("RectangleShape2D_g4xf8")
 
 [node name="Menu" type="Node2D" parent="UI/Player/PlayerUpgrades"]
 process_mode = 1
-script = ExtResource("3_xoj55")
+visible = false
+script = ExtResource("3_o3kn6")
 
 [node name="Background" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_top = -100.0
@@ -207,6 +212,72 @@ text = "Fast Hands 3: $250K (Steal 4K more per click)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="Secretary" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 70.0
+offset_right = 45.0
+offset_bottom = 110.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_hxy7w")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Secretary"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 193.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Secretary 1: $100K (Passively steal 1K per second)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Secretary2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 120.0
+offset_right = 45.0
+offset_bottom = 160.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_3fepa")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Secretary2"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 193.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Secretary 2: $250K (Passively steal 2K more per second)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary2/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Secretary3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 170.0
+offset_right = 45.0
+offset_bottom = 210.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_boo17")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Secretary3"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 193.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Secretary 3: $500K (Passively steal 4K more per second)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary3/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
 [node name="Company" type="Control" parent="UI"]
 anchors_preset = 0
 offset_right = 1152.0
@@ -221,7 +292,7 @@ text = "Company Cash: $0"
 
 [node name="CompanyUpgrades" type="Sprite2D" parent="UI/Company"]
 position = Vector2(1112, 250)
-script = ExtResource("2_m8xjv")
+script = ExtResource("2_op2w6")
 
 [node name="ColorRect" type="ColorRect" parent="UI/Company/CompanyUpgrades"]
 offset_right = 40.0
@@ -235,8 +306,9 @@ shape = SubResource("RectangleShape2D_g4xf8")
 
 [node name="Menu" type="Node2D" parent="UI/Company/CompanyUpgrades"]
 process_mode = 1
+visible = false
 position = Vector2(-460, 0)
-script = ExtResource("3_xoj55")
+script = ExtResource("3_o3kn6")
 
 [node name="ColorRect" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
 offset_top = -100.0
@@ -352,6 +424,22 @@ offset_bottom = 573.0
 position = Vector2(477.5, 553.5)
 shape = SubResource("RectangleShape2D_qawjk")
 
+[node name="Sabotage" type="Sprite2D" parent="."]
+position = Vector2(100, -30)
+script = ExtResource("14_kvtv2")
+
+[node name="ColorRect" type="ColorRect" parent="Sabotage"]
+offset_left = 458.0
+offset_top = 533.0
+offset_right = 498.0
+offset_bottom = 573.0
+
+[node name="Area2D" type="Area2D" parent="Sabotage"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sabotage/Area2D"]
+position = Vector2(477.5, 553.5)
+shape = SubResource("RectangleShape2D_qawjk")
+
 [node name="CompanyClick" type="Sprite2D" parent="."]
 position = Vector2(200, 0)
 script = ExtResource("3_egxw5")
@@ -379,6 +467,12 @@ shape = SubResource("RectangleShape2D_qawjk")
 [connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/FastHands2/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands2" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/FastHands3/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands3" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/FastHands3/Area2D" to="UI/Player/PlayerUpgrades/Menu/FastHands3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Secretary/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Secretary/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Secretary2/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Secretary2/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Secretary3/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Secretary3/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary3" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Area2D" to="UI/Company/CompanyUpgrades" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Area2D" to="UI/Company/CompanyUpgrades" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Menu/Exit/Area2D" to="UI/Company/CompanyUpgrades/Menu" method="_on_area_2d_mouse_entered"]
@@ -391,5 +485,7 @@ shape = SubResource("RectangleShape2D_qawjk")
 [connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Menu/Dedication3/Area2D" to="UI/Company/CompanyUpgrades/Menu/Dedication3" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="PlayerClick/Area2D" to="PlayerClick" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="PlayerClick/Area2D" to="PlayerClick" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Sabotage/Area2D" to="Sabotage" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Sabotage/Area2D" to="Sabotage" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="CompanyClick/Area2D" to="CompanyClick" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CompanyClick/Area2D" to="CompanyClick" method="_on_area_2d_mouse_exited"]
