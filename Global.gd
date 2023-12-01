@@ -50,3 +50,6 @@ func updateCompanyClickAmount(c):
 	
 func updatePlayerPassiveAmount(c):
 	playerPassiveAmount += c
+	
+func updateSabotageAmount(c):
+	sabotageAmount += c

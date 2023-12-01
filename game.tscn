@@ -1,20 +1,29 @@
-[gd_scene load_steps=20 format=3 uid="uid://cui26jcy0ekxr"]
+[gd_scene load_steps=31 format=3 uid="uid://cui26jcy0ekxr"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_k57eo"]
 [ext_resource type="Script" path="res://UpgradeScripts/PlayerUpgrades.gd" id="2_op2w6"]
+[ext_resource type="FontFile" uid="uid://bci3qpeqs1sb" path="res://Assets/CheddarGothic-Serif.otf" id="2_qpcgx"]
 [ext_resource type="Script" path="res://PlayerClick.gd" id="2_w2p5o"]
 [ext_resource type="Script" path="res://CompanyClick.gd" id="3_egxw5"]
 [ext_resource type="Script" path="res://UpgradeScripts/PlayerUpgradeMenu.gd" id="3_o3kn6"]
 [ext_resource type="Script" path="res://UpgradeScripts/FastHands1.gd" id="4_vvfu3"]
 [ext_resource type="Script" path="res://UpgradeScripts/FastHands2.gd" id="5_ff1ab"]
+[ext_resource type="Texture2D" uid="uid://xbtq4x5wssas" path="res://Assets/fast_hands1.png" id="5_m205o"]
 [ext_resource type="Script" path="res://UpgradeScripts/FastHands3.gd" id="6_iwdhk"]
 [ext_resource type="Script" path="res://UpgradeScripts/Secretary.gd" id="7_hxy7w"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication.gd" id="7_ycgmi"]
 [ext_resource type="Script" path="res://UpgradeScripts/Secretary2.gd" id="8_3fepa"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication2.gd" id="8_dus0u"]
+[ext_resource type="Texture2D" uid="uid://bbru2nfhqvi6m" path="res://Assets/secretary1.png" id="9_0s6qg"]
 [ext_resource type="Script" path="res://UpgradeScripts/Secretary3.gd" id="9_boo17"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication3.gd" id="9_cul8d"]
+[ext_resource type="Script" path="res://Saboteur.gd" id="10_3locs"]
+[ext_resource type="Texture2D" uid="uid://dm1mq1iycb2tn" path="res://Assets/saboteur1.png" id="11_dryul"]
+[ext_resource type="Script" path="res://Saboteur2.gd" id="14_5dpxi"]
 [ext_resource type="Script" path="res://UpgradeScripts/Sabotage.gd" id="14_kvtv2"]
+[ext_resource type="Script" path="res://Saboteur3.gd" id="15_4b8qj"]
+[ext_resource type="Texture2D" uid="uid://b4esqkogpnfoo" path="res://Assets/businessman.png" id="21_bpofr"]
+[ext_resource type="Texture2D" uid="uid://bn7n3qlqj68bs" path="res://Assets/cubicle.png" id="23_30fob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4xf8"]
 size = Vector2(42, 63)
@@ -23,10 +32,16 @@ size = Vector2(42, 63)
 size = Vector2(45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svjyp"]
-size = Vector2(40, 38)
+size = Vector2(47, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8atbw"]
+size = Vector2(76, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrqdw"]
+size = Vector2(67, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qawjk"]
-size = Vector2(37, 39)
+size = Vector2(99, 74)
 
 [node name="Game" type="Node2D"]
 
@@ -93,6 +108,8 @@ offset_right = 42.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_qpcgx")
+theme_override_font_sizes/font_size = 25
 text = "Time: 0000"
 
 [node name="Timer" type="Timer" parent="UI"]
@@ -107,6 +124,7 @@ offset_bottom = 648.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Player Cash: $0"
 
 [node name="PlayerUpgrades" type="Sprite2D" parent="UI/Player"]
@@ -126,12 +144,13 @@ shape = SubResource("RectangleShape2D_g4xf8")
 [node name="Menu" type="Node2D" parent="UI/Player/PlayerUpgrades"]
 process_mode = 1
 visible = false
+position = Vector2(0, -50)
 script = ExtResource("3_o3kn6")
 
 [node name="Background" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_top = -100.0
 offset_right = 500.0
-offset_bottom = 350.0
+offset_bottom = 380.0
 
 [node name="Exit" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 451.0
@@ -151,8 +170,13 @@ offset_left = 5.0
 offset_top = -80.0
 offset_right = 45.0
 offset_bottom = -40.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 script = ExtResource("4_vvfu3")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands"]
+position = Vector2(25, 15)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("5_m205o")
 
 [node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/FastHands"]
 layout_mode = 0
@@ -160,12 +184,13 @@ offset_left = 50.0
 offset_right = 193.0
 offset_bottom = 26.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Fast Hands 1: $10K (Steal 1K more per click)"
 
 [node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands/Area2D"]
-position = Vector2(20, 20)
+position = Vector2(23.5, 15)
 shape = SubResource("RectangleShape2D_svjyp")
 
 [node name="FastHands2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
@@ -173,7 +198,7 @@ offset_left = 5.0
 offset_top = -30.0
 offset_right = 45.0
 offset_bottom = 10.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 script = ExtResource("5_ff1ab")
 
 [node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/FastHands2"]
@@ -182,6 +207,7 @@ offset_left = 50.0
 offset_right = 193.0
 offset_bottom = 26.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Fast Hands 2: $50K (Steal 2K more per click)"
 
 [node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands2"]
@@ -190,20 +216,27 @@ text = "Fast Hands 2: $50K (Steal 2K more per click)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands2"]
+position = Vector2(25, 15)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("5_m205o")
+
 [node name="FastHands3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 20.0
 offset_right = 45.0
 offset_bottom = 60.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 script = ExtResource("6_iwdhk")
 
 [node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/FastHands3"]
 layout_mode = 0
 offset_left = 50.0
-offset_right = 193.0
-offset_bottom = 26.0
+offset_top = 10.0
+offset_right = 301.0
+offset_bottom = 36.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Fast Hands 3: $250K (Steal 4K more per click)"
 
 [node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands3"]
@@ -212,20 +245,32 @@ text = "Fast Hands 3: $250K (Steal 4K more per click)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands3"]
+position = Vector2(25, 15)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("5_m205o")
+
 [node name="Secretary" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 70.0
 offset_right = 45.0
 offset_bottom = 110.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 script = ExtResource("7_hxy7w")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary"]
+position = Vector2(20, 20)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_0s6qg")
 
 [node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Secretary"]
 layout_mode = 0
 offset_left = 50.0
-offset_right = 193.0
-offset_bottom = 26.0
+offset_top = 10.0
+offset_right = 324.0
+offset_bottom = 36.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Secretary 1: $100K (Passively steal 1K per second)"
 
 [node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary"]
@@ -239,15 +284,22 @@ offset_left = 5.0
 offset_top = 120.0
 offset_right = 45.0
 offset_bottom = 160.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 script = ExtResource("8_3fepa")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary2"]
+position = Vector2(20, 20)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_0s6qg")
 
 [node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Secretary2"]
 layout_mode = 0
 offset_left = 50.0
-offset_right = 193.0
-offset_bottom = 26.0
+offset_top = 10.0
+offset_right = 361.0
+offset_bottom = 36.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Secretary 2: $250K (Passively steal 2K more per second)"
 
 [node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary2"]
@@ -261,20 +313,114 @@ offset_left = 5.0
 offset_top = 170.0
 offset_right = 45.0
 offset_bottom = 210.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 script = ExtResource("9_boo17")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary3"]
+position = Vector2(20, 20)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_0s6qg")
 
 [node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Secretary3"]
 layout_mode = 0
 offset_left = 50.0
-offset_right = 193.0
-offset_bottom = 26.0
+offset_top = 10.0
+offset_right = 361.0
+offset_bottom = 36.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Secretary 3: $500K (Passively steal 4K more per second)"
 
 [node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary3/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Saboteur" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 220.0
+offset_right = 45.0
+offset_bottom = 260.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("10_3locs")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur"]
+position = Vector2(20, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("11_dryul")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Saboteur"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 349.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
+text = "Saboteur 1: $150K (Increase Sabotage Amount by 100K)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Saboteur2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 270.0
+offset_right = 45.0
+offset_bottom = 310.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("14_5dpxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2"]
+position = Vector2(20, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("11_dryul")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 354.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
+text = "Saboteur 2: $850K (Increase Sabotage Amount by 500K)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2/Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="Saboteur3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
+offset_left = 5.0
+offset_top = 320.0
+offset_right = 45.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("15_4b8qj")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3"]
+position = Vector2(20, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("11_dryul")
+
+[node name="Label" type="Label" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 365.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
+text = "Saboteur 3: $2000K (Increase Sabotage Amount by 1000K)"
+
+[node name="Area2D" type="Area2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3/Area2D"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
@@ -288,6 +434,7 @@ layout_mode = 0
 offset_left = 720.0
 offset_right = 862.0
 offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Company Cash: $0"
 
 [node name="CompanyUpgrades" type="Sprite2D" parent="UI/Company"]
@@ -346,6 +493,7 @@ offset_right = -55.0
 offset_bottom = 26.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Dedication 1: $10K (Produce 1K more per click)"
 horizontal_alignment = 2
 
@@ -373,6 +521,7 @@ offset_right = -55.0
 offset_bottom = 26.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Dedication 2: $50K (Produce 2K more per click)"
 horizontal_alignment = 2
 
@@ -400,6 +549,7 @@ offset_right = -55.0
 offset_bottom = 26.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qpcgx")
 text = "Dedication 3: $250K (Produce 4K more per click)"
 horizontal_alignment = 2
 
@@ -412,48 +562,45 @@ shape = SubResource("RectangleShape2D_svjyp")
 [node name="PlayerClick" type="Sprite2D" parent="."]
 script = ExtResource("2_w2p5o")
 
-[node name="ColorRect" type="ColorRect" parent="PlayerClick"]
-offset_left = 458.0
-offset_top = 533.0
-offset_right = 498.0
-offset_bottom = 573.0
+[node name="Sprite2D" type="Sprite2D" parent="PlayerClick"]
+position = Vector2(475, 550)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("21_bpofr")
 
 [node name="Area2D" type="Area2D" parent="PlayerClick"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerClick/Area2D"]
-position = Vector2(477.5, 553.5)
-shape = SubResource("RectangleShape2D_qawjk")
+position = Vector2(477, 552)
+shape = SubResource("RectangleShape2D_8atbw")
 
 [node name="Sabotage" type="Sprite2D" parent="."]
 position = Vector2(100, -30)
 script = ExtResource("14_kvtv2")
 
-[node name="ColorRect" type="ColorRect" parent="Sabotage"]
-offset_left = 458.0
-offset_top = 533.0
-offset_right = 498.0
-offset_bottom = 573.0
+[node name="Sprite2D" type="Sprite2D" parent="Sabotage"]
+position = Vector2(477, 550)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("11_dryul")
 
 [node name="Area2D" type="Area2D" parent="Sabotage"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sabotage/Area2D"]
-position = Vector2(477.5, 553.5)
-shape = SubResource("RectangleShape2D_qawjk")
+position = Vector2(479.5, 550)
+shape = SubResource("RectangleShape2D_yrqdw")
 
 [node name="CompanyClick" type="Sprite2D" parent="."]
 position = Vector2(200, 0)
 script = ExtResource("3_egxw5")
 
-[node name="ColorRect" type="ColorRect" parent="CompanyClick"]
-offset_left = 458.0
-offset_top = 533.0
-offset_right = 498.0
-offset_bottom = 573.0
+[node name="Sprite2D" type="Sprite2D" parent="CompanyClick"]
+position = Vector2(470, 540)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("23_30fob")
 
 [node name="Area2D" type="Area2D" parent="CompanyClick"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CompanyClick/Area2D"]
-position = Vector2(477.5, 553.5)
+position = Vector2(474.5, 554)
 shape = SubResource("RectangleShape2D_qawjk")
 
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]
@@ -473,6 +620,12 @@ shape = SubResource("RectangleShape2D_qawjk")
 [connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Secretary2/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary2" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Secretary3/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary3" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Secretary3/Area2D" to="UI/Player/PlayerUpgrades/Menu/Secretary3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Saboteur/Area2D" to="UI/Player/PlayerUpgrades/Menu/Saboteur" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Saboteur/Area2D" to="UI/Player/PlayerUpgrades/Menu/Saboteur" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Saboteur2/Area2D" to="UI/Player/PlayerUpgrades/Menu/Saboteur2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Saboteur2/Area2D" to="UI/Player/PlayerUpgrades/Menu/Saboteur2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Menu/Saboteur3/Area2D" to="UI/Player/PlayerUpgrades/Menu/Saboteur3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Player/PlayerUpgrades/Menu/Saboteur3/Area2D" to="UI/Player/PlayerUpgrades/Menu/Saboteur3" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Area2D" to="UI/Company/CompanyUpgrades" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Company/CompanyUpgrades/Area2D" to="UI/Company/CompanyUpgrades" method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_entered" from="UI/Company/CompanyUpgrades/Menu/Exit/Area2D" to="UI/Company/CompanyUpgrades/Menu" method="_on_area_2d_mouse_entered"]
