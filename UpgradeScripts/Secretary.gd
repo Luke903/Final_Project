@@ -14,10 +14,11 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("Click") and mouseIn:
-		global.updatePlayerCash(-100)
-		global.updatePlayerPassiveAmount(1)
-		visible = false
-		set_process(false)
+		if global.playerCash >= 100:
+			global.updatePlayerCash(-100)
+			global.updatePlayerPassiveAmount(1)
+			visible = false
+			set_process(false)
 
 func _on_area_2d_mouse_entered():
 	mouseIn = true

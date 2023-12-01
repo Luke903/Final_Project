@@ -7,6 +7,7 @@ var companyClickAmount
 var sabotageAmount
 var playerPassiveAmount
 var companyPassiveAmount
+var sabotageChance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,7 @@ func _ready():
 	sabotageAmount = 100
 	playerPassiveAmount = 0
 	companyPassiveAmount = 0
+	sabotageChance = .05
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
