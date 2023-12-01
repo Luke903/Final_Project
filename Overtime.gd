@@ -1,11 +1,11 @@
-extends Node2D
+extends ColorRect
 var mouseIn
+var global
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouseIn = false
-	set_process(false)
-	visible = false
+	global = get_node("/root/Global")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,9 +13,11 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if mouseIn and event.is_action_pressed("Click"):
-		$Exit/AnimatedSprite2D.animation = "Pressed"
-		$Exit/AnimatedSprite2D.play()
+	if event.is_action_pressed("Click") and mouseIn:
+		global.updateCompanyCash(-100)
+		global.updateCompanyPassiveAmount(1)
+		visible = false
+		set_process(false)
 
 func _on_area_2d_mouse_entered():
 	mouseIn = true
@@ -23,9 +25,3 @@ func _on_area_2d_mouse_entered():
 
 func _on_area_2d_mouse_exited():
 	mouseIn = false
-
-
-func _on_animated_sprite_2d_animation_finished():
-	visible = false
-	set_process(false)
-	$Exit/AnimatedSprite2D.animation = "default"

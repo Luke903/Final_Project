@@ -1,3 +1,50 @@
-[gd_scene format=3 uid="uid://dol4l1hc4kjui"]
+[gd_scene load_steps=3 format=3 uid="uid://dol4l1hc4kjui"]
+
+[ext_resource type="FontFile" uid="uid://bci3qpeqs1sb" path="res://Assets/CheddarGothic-Serif.otf" id="1_dn0gv"]
+[ext_resource type="Script" path="res://how_to_play.gd" id="1_k4pxl"]
 
 [node name="HowToPlay" type="Node2D"]
+script = ExtResource("1_k4pxl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -784.0
+offset_top = -91.0
+offset_right = 784.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_dn0gv")
+theme_override_font_sizes/font_size = 25
+text = "Welcome to \"Game Name\" the thrilling clicker game that puts you in the shoes of a 
+mastermind schemer looking to make it big by pulling off the ultimate heist from the inside of a massive corporation.
+Click your way through the corporate hierarchy as you successfully navigate the treacherous waters of embezzlement. 
+Invest your riches wisely in more productive ways of stealing, but WATCH OUT! 
+If the company becomes too successful they might catch on to your schemes. 
+Click to make and steal money. Try to meet your target before time runs out or the company catches on to your schemes. 
+Buy upgrades to master your craft and, if all else fails, sabotage your company to put them behind. 
+Will you become an elusive tycoon or will you fall victim to your own greed?"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 126.0
+offset_bottom = 53.0
+text = "Go Back"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
