@@ -1,5 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://cui26jcy0ekxr"]
+[gd_scene load_steps=44 format=3 uid="uid://cui26jcy0ekxr"]
 
+[ext_resource type="Texture2D" uid="uid://b2netoqgov0f1" path="res://Assets/Play Background.png" id="1_4mnq0"]
 [ext_resource type="Script" path="res://UI.gd" id="1_k57eo"]
 [ext_resource type="Script" path="res://UpgradeScripts/PlayerUpgrades.gd" id="2_op2w6"]
 [ext_resource type="FontFile" uid="uid://bci3qpeqs1sb" path="res://Assets/CheddarGothic-Serif.otf" id="2_qpcgx"]
@@ -17,21 +18,21 @@
 [ext_resource type="Texture2D" uid="uid://bbru2nfhqvi6m" path="res://Assets/secretary1.png" id="9_0s6qg"]
 [ext_resource type="Script" path="res://UpgradeScripts/Secretary3.gd" id="9_boo17"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication3.gd" id="9_cul8d"]
-[ext_resource type="Script" path="res://Saboteur.gd" id="10_3locs"]
 [ext_resource type="Texture2D" uid="uid://dm1mq1iycb2tn" path="res://Assets/saboteur1.png" id="11_dryul"]
 [ext_resource type="Texture2D" uid="uid://c8j7mwrc4rwvx" path="res://Assets/secretary2.png" id="12_xfypl"]
-[ext_resource type="Script" path="res://Saboteur2.gd" id="14_5dpxi"]
 [ext_resource type="Script" path="res://UpgradeScripts/Sabotage.gd" id="14_kvtv2"]
 [ext_resource type="Texture2D" uid="uid://12kn873dwn2b" path="res://Assets/secretary3.png" id="14_wh8o8"]
-[ext_resource type="Script" path="res://Saboteur3.gd" id="15_4b8qj"]
+[ext_resource type="Script" path="res://UpgradeScripts/Saboteur.gd" id="16_jwsvr"]
+[ext_resource type="Script" path="res://UpgradeScripts/Saboteur2.gd" id="18_gbqed"]
+[ext_resource type="Script" path="res://UpgradeScripts/Saboteur3.gd" id="19_la1nt"]
 [ext_resource type="Texture2D" uid="uid://mkurumjnk1up" path="res://Assets/Big_Exit_button.png" id="19_wwsbu"]
 [ext_resource type="Script" path="res://CompanyUpgradeMenu.gd" id="20_88edd"]
-[ext_resource type="Script" path="res://Overtime.gd" id="20_uu1kh"]
 [ext_resource type="Texture2D" uid="uid://b4esqkogpnfoo" path="res://Assets/businessman.png" id="21_bpofr"]
 [ext_resource type="Texture2D" uid="uid://4lwnavpuk7np" path="res://Assets/overtime1.png" id="21_glkhl"]
-[ext_resource type="Script" path="res://Overtime2.gd" id="22_jifkk"]
 [ext_resource type="Texture2D" uid="uid://bn7n3qlqj68bs" path="res://Assets/cubicle.png" id="23_30fob"]
-[ext_resource type="Script" path="res://Overtime3.gd" id="23_ufo54"]
+[ext_resource type="Script" path="res://UpgradeScripts/Overtime.gd" id="24_wp284"]
+[ext_resource type="Script" path="res://UpgradeScripts/Overtime2.gd" id="26_4bnp6"]
+[ext_resource type="Script" path="res://UpgradeScripts/Overtime3.gd" id="27_4wtch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4xf8"]
 size = Vector2(42, 63)
@@ -86,6 +87,10 @@ size = Vector2(67, 50)
 size = Vector2(99, 74)
 
 [node name="Game" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("1_4mnq0")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -408,7 +413,7 @@ offset_top = 220.0
 offset_right = 45.0
 offset_bottom = 260.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("10_3locs")
+script = ExtResource("16_jwsvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur"]
 position = Vector2(20, 20)
@@ -437,7 +442,7 @@ offset_top = 270.0
 offset_right = 45.0
 offset_bottom = 310.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("14_5dpxi")
+script = ExtResource("18_gbqed")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2"]
 position = Vector2(20, 20)
@@ -466,7 +471,7 @@ offset_top = 320.0
 offset_right = 45.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("15_4b8qj")
+script = ExtResource("19_la1nt")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3"]
 position = Vector2(20, 20)
@@ -638,7 +643,7 @@ offset_top = 70.0
 offset_right = 490.0
 offset_bottom = 110.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("20_uu1kh")
+script = ExtResource("24_wp284")
 
 [node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Overtime"]
 layout_mode = 1
@@ -672,7 +677,7 @@ offset_top = 120.0
 offset_right = 490.0
 offset_bottom = 160.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("22_jifkk")
+script = ExtResource("26_4bnp6")
 
 [node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Overtime2"]
 layout_mode = 1
@@ -706,7 +711,7 @@ offset_top = 170.0
 offset_right = 490.0
 offset_bottom = 210.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("23_ufo54")
+script = ExtResource("27_4wtch")
 
 [node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Overtime3"]
 layout_mode = 1
