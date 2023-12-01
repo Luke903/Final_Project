@@ -26,6 +26,6 @@ Cheddar Gothic font pack obtained from Adobe Fonts
 I've had several ideas for future develoupment. The main idea being various levels with increaseing difficulty. The increase in difficulty could come from a tighter time limit, the company starting out with more money, the company gaining passive income faster, and not being able to steal money from the company below a certain threshold (other than 0, which it is at currently). Beyond the levels I could also see some narration in between to flesh out a little bit of a story that explains the character motivation to steal and the difficulty raising between each level. 
 
 # Created by: PAL
-Luke Vogel, (Game Producer: gameplay loop/mechanics, gameplay diagram, general design choices -layout, font, etc.-, sound effects, and the exit button :p)
-Preston Brown, (Game Coder: Game code, general design choices -layout, etc.-)
+Luke Vogel, (Game Producer: gameplay loop/mechanics, gameplay diagram, general design choices -layout, font, etc.-, sound effects, various UI Buttons :p)
+Preston Brown, (Game Coder: Game code, general design choices -layout, etc.-, backing track, sound design)
 Alec Umlauf (Game Artist: game art panels, upgrade pixel art)
