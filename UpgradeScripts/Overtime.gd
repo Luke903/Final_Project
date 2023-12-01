@@ -14,9 +14,10 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("Click") and mouseIn:
-		if global.playerCash >= 150:
-			global.updateSabotageAmount(100)
-			global.updatePlayerCash(-150)
+		if global.companyCash >= 100:
+			global.updateCompanyCash(-100)
+			global.updateCompanyPassiveAmount(1)
+			$ChaChing.play()
 			visible = false
 			set_process(false)
 

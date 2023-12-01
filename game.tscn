@@ -1,5 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://cui26jcy0ekxr"]
+[gd_scene load_steps=51 format=3 uid="uid://cui26jcy0ekxr"]
 
+[ext_resource type="Texture2D" uid="uid://b2netoqgov0f1" path="res://Assets/Play Background.png" id="1_4mnq0"]
 [ext_resource type="Script" path="res://UI.gd" id="1_k57eo"]
 [ext_resource type="Script" path="res://UpgradeScripts/PlayerUpgrades.gd" id="2_op2w6"]
 [ext_resource type="FontFile" uid="uid://bci3qpeqs1sb" path="res://Assets/CheddarGothic-Serif.otf" id="2_qpcgx"]
@@ -17,21 +18,24 @@
 [ext_resource type="Texture2D" uid="uid://bbru2nfhqvi6m" path="res://Assets/secretary1.png" id="9_0s6qg"]
 [ext_resource type="Script" path="res://UpgradeScripts/Secretary3.gd" id="9_boo17"]
 [ext_resource type="Script" path="res://UpgradeScripts/Dedication3.gd" id="9_cul8d"]
-[ext_resource type="Script" path="res://Saboteur.gd" id="10_3locs"]
+[ext_resource type="AudioStream" uid="uid://da46qfalc8u8a" path="res://Assets/CHACHING.wav" id="9_ibe31"]
 [ext_resource type="Texture2D" uid="uid://dm1mq1iycb2tn" path="res://Assets/saboteur1.png" id="11_dryul"]
 [ext_resource type="Texture2D" uid="uid://c8j7mwrc4rwvx" path="res://Assets/secretary2.png" id="12_xfypl"]
-[ext_resource type="Script" path="res://Saboteur2.gd" id="14_5dpxi"]
 [ext_resource type="Script" path="res://UpgradeScripts/Sabotage.gd" id="14_kvtv2"]
 [ext_resource type="Texture2D" uid="uid://12kn873dwn2b" path="res://Assets/secretary3.png" id="14_wh8o8"]
-[ext_resource type="Script" path="res://Saboteur3.gd" id="15_4b8qj"]
+[ext_resource type="Script" path="res://UpgradeScripts/Saboteur.gd" id="16_jwsvr"]
+[ext_resource type="Script" path="res://UpgradeScripts/Saboteur2.gd" id="18_gbqed"]
+[ext_resource type="Script" path="res://UpgradeScripts/Saboteur3.gd" id="19_la1nt"]
 [ext_resource type="Texture2D" uid="uid://mkurumjnk1up" path="res://Assets/Big_Exit_button.png" id="19_wwsbu"]
 [ext_resource type="Script" path="res://CompanyUpgradeMenu.gd" id="20_88edd"]
-[ext_resource type="Script" path="res://Overtime.gd" id="20_uu1kh"]
 [ext_resource type="Texture2D" uid="uid://b4esqkogpnfoo" path="res://Assets/businessman.png" id="21_bpofr"]
 [ext_resource type="Texture2D" uid="uid://4lwnavpuk7np" path="res://Assets/overtime1.png" id="21_glkhl"]
-[ext_resource type="Script" path="res://Overtime2.gd" id="22_jifkk"]
 [ext_resource type="Texture2D" uid="uid://bn7n3qlqj68bs" path="res://Assets/cubicle.png" id="23_30fob"]
-[ext_resource type="Script" path="res://Overtime3.gd" id="23_ufo54"]
+[ext_resource type="Script" path="res://UpgradeScripts/Overtime.gd" id="24_wp284"]
+[ext_resource type="Script" path="res://UpgradeScripts/Overtime2.gd" id="26_4bnp6"]
+[ext_resource type="Script" path="res://UpgradeScripts/Overtime3.gd" id="27_4wtch"]
+[ext_resource type="AudioStream" uid="uid://bi3f547w1leup" path="res://Assets/pop.wav" id="31_73f41"]
+[ext_resource type="Texture2D" uid="uid://ca61yf8f6jcqa" path="res://Assets/Sabotage.png" id="34_tj5af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4xf8"]
 size = Vector2(42, 63)
@@ -62,7 +66,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Pressed",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -79,13 +83,51 @@ size = Vector2(47, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8atbw"]
 size = Vector2(76, 94)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mp3r"]
+atlas = ExtResource("34_tj5af")
+region = Rect2(8, 4, 57, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e3ud"]
+atlas = ExtResource("34_tj5af")
+region = Rect2(8, 34, 57, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnq37"]
+atlas = ExtResource("34_tj5af")
+region = Rect2(8, 4, 57, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cr6x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mp3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e3ud")
+}],
+"loop": false,
+"name": &"Pressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnq37")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrqdw"]
-size = Vector2(67, 50)
+size = Vector2(57, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qawjk"]
 size = Vector2(99, 74)
 
 [node name="Game" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("1_4mnq0")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -185,6 +227,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("2_qpcgx")
+theme_override_font_sizes/font_size = 30
 text = "Player Cash: $0"
 
 [node name="PlayerUpgrades" type="Sprite2D" parent="UI/Player"]
@@ -258,6 +301,11 @@ text = "Fast Hands 1: $10K (Steal 1K more per click)"
 position = Vector2(23.5, 15)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="FastHands2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = -30.0
@@ -285,6 +333,11 @@ shape = SubResource("RectangleShape2D_svjyp")
 position = Vector2(25, 15)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("5_m205o")
+
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands2"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
 
 [node name="FastHands3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
@@ -315,6 +368,11 @@ position = Vector2(25, 15)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("5_m205o")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/FastHands3"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Secretary" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 70.0
@@ -343,6 +401,11 @@ text = "Secretary 1: $100K (Passively steal 1K per second)"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary/Area2D"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
 
 [node name="Secretary2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
@@ -373,6 +436,11 @@ text = "Secretary 2: $250K (Passively steal 2K more per second)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary2"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Secretary3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 170.0
@@ -402,13 +470,18 @@ text = "Secretary 3: $500K (Passively steal 4K more per second)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/Secretary3"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Saboteur" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 220.0
 offset_right = 45.0
 offset_bottom = 260.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("10_3locs")
+script = ExtResource("16_jwsvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur"]
 position = Vector2(20, 20)
@@ -431,13 +504,18 @@ text = "Saboteur 1: $150K (Increase Sabotage Amount by 100K)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Saboteur2" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 270.0
 offset_right = 45.0
 offset_bottom = 310.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("14_5dpxi")
+script = ExtResource("18_gbqed")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2"]
 position = Vector2(20, 20)
@@ -460,13 +538,18 @@ text = "Saboteur 2: $850K (Increase Sabotage Amount by 500K)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur2"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Saboteur3" type="ColorRect" parent="UI/Player/PlayerUpgrades/Menu"]
 offset_left = 5.0
 offset_top = 320.0
 offset_right = 45.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("15_4b8qj")
+script = ExtResource("19_la1nt")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3"]
 position = Vector2(20, 20)
@@ -489,6 +572,11 @@ text = "Saboteur 3: $2000K (Increase Sabotage Amount by 1000K)"
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Player/PlayerUpgrades/Menu/Saboteur3"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Company" type="Control" parent="UI"]
 anchors_preset = 0
 offset_right = 1152.0
@@ -500,6 +588,7 @@ offset_left = 720.0
 offset_right = 862.0
 offset_bottom = 26.0
 theme_override_fonts/font = ExtResource("2_qpcgx")
+theme_override_font_sizes/font_size = 30
 text = "Company Cash: $0"
 
 [node name="CompanyUpgrades" type="Sprite2D" parent="UI/Company"]
@@ -574,6 +663,11 @@ horizontal_alignment = 2
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Dedication2" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
 offset_left = 450.0
 offset_top = -30.0
@@ -602,6 +696,11 @@ horizontal_alignment = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication2/Area2D"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
+
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication2"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
 
 [node name="Dedication3" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
 offset_left = 450.0
@@ -632,13 +731,18 @@ horizontal_alignment = 2
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_svjyp")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Company/CompanyUpgrades/Menu/Dedication3"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Overtime" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
 offset_left = 450.0
 offset_top = 70.0
 offset_right = 490.0
 offset_bottom = 110.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("20_uu1kh")
+script = ExtResource("24_wp284")
 
 [node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Overtime"]
 layout_mode = 1
@@ -666,13 +770,18 @@ position = Vector2(20, 20)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("21_glkhl")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Company/CompanyUpgrades/Menu/Overtime"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Overtime2" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
 offset_left = 450.0
 offset_top = 120.0
 offset_right = 490.0
 offset_bottom = 160.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("22_jifkk")
+script = ExtResource("26_4bnp6")
 
 [node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Overtime2"]
 layout_mode = 1
@@ -700,13 +809,18 @@ position = Vector2(20, 20)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("21_glkhl")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Company/CompanyUpgrades/Menu/Overtime2"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="Overtime3" type="ColorRect" parent="UI/Company/CompanyUpgrades/Menu"]
 offset_left = 450.0
 offset_top = 170.0
 offset_right = 490.0
 offset_bottom = 210.0
 color = Color(0, 0, 0, 0)
-script = ExtResource("23_ufo54")
+script = ExtResource("27_4wtch")
 
 [node name="Label" type="Label" parent="UI/Company/CompanyUpgrades/Menu/Overtime3"]
 layout_mode = 1
@@ -734,6 +848,11 @@ position = Vector2(20, 20)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("21_glkhl")
 
+[node name="ChaChing" type="AudioStreamPlayer2D" parent="UI/Company/CompanyUpgrades/Menu/Overtime3"]
+position = Vector2(-5, 130)
+stream = ExtResource("9_ibe31")
+panning_strength = 0.0
+
 [node name="PlayerClick" type="Sprite2D" parent="."]
 script = ExtResource("2_w2p5o")
 
@@ -748,19 +867,25 @@ texture = ExtResource("21_bpofr")
 position = Vector2(477, 552)
 shape = SubResource("RectangleShape2D_8atbw")
 
+[node name="PopSound" type="AudioStreamPlayer2D" parent="PlayerClick"]
+position = Vector2(-200, 0)
+stream = ExtResource("31_73f41")
+max_distance = 1e+06
+panning_strength = 0.0
+
 [node name="Sabotage" type="Sprite2D" parent="."]
 position = Vector2(100, -30)
 script = ExtResource("14_kvtv2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Sabotage"]
-position = Vector2(477, 550)
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("11_dryul")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sabotage"]
+position = Vector2(479, 549)
+sprite_frames = SubResource("SpriteFrames_1cr6x")
+animation = &"Pressed"
 
 [node name="Area2D" type="Area2D" parent="Sabotage"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sabotage/Area2D"]
-position = Vector2(479.5, 550)
+position = Vector2(478.5, 549.5)
 shape = SubResource("RectangleShape2D_yrqdw")
 
 [node name="CompanyClick" type="Sprite2D" parent="."]
@@ -777,6 +902,12 @@ texture = ExtResource("23_30fob")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CompanyClick/Area2D"]
 position = Vector2(474.5, 554)
 shape = SubResource("RectangleShape2D_qawjk")
+
+[node name="PopSound" type="AudioStreamPlayer2D" parent="CompanyClick"]
+position = Vector2(-200, 0)
+stream = ExtResource("31_73f41")
+max_distance = 100000.0
+panning_strength = 0.0
 
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="UI/Player/PlayerUpgrades/Area2D" to="UI/Player/PlayerUpgrades" method="_on_area_2d_mouse_entered"]
