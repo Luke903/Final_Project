@@ -14,10 +14,11 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("Click") and mouseIn:
-		global.updateCompanyClickAmount(4)
-		global.updateCompanyCash(-250)
-		visible = false
-		set_process(false)
+		if global.companyCash >= 250:
+			global.updateCompanyClickAmount(4)
+			global.updateCompanyCash(-250)
+			visible = false
+			set_process(false)
 
 func _on_area_2d_mouse_entered():
 	mouseIn = true
